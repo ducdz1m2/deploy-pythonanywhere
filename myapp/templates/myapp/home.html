@@ -1,12 +1,71 @@
 {%extends 'myapp/base.html'%}
-
+{%load static%}
 {%block title%}
 Home
 {%endblock%}
 {%block content%}
 
+<div class="container-fluid text-center">
+    <h1>Game vừa cập nhật</h1>
+    <div class="row">
+        <div class="col-md-8">
+            
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" >
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                    {% for game in games|slice:"0:3" %}
+                      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ game.img }}" class="d-block w-100 h-100" style="object-fit: cover;" alt="...">
+                        <div class="carousel-caption d-none d-md-block">
+                          <h5>{{game.title}}</h5>
+                          <p>{{game.content}}</p>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              
 
-<div class="row">
+        </div>
+        <div class="col-md-4">
+            {%for game in games|slice:"0:3"%}
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                  <div class="col-md-4">
+                    <img src="{{game.img}}" class="img-fluid rounded-start" alt="..." >
+                  </div>
+                  <div class="col-md-8">
+                    <div class="card-body">
+                      <h5 class="card-title">
+                        {{game.title}}
+                      </h5>
+                      <p class="card-text">
+                        {{game.content}}
+                      </p>
+                      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {%endfor%}
+        </div>
+    </div>
+</div>
+
+<div class="row my-5 text-center">
+    <h1>Game cũ mà hay</h1>
     {% for game in games %}
     <div class="col-lg-4 mb-4">
         <div class="card container-fluid h-100">
@@ -23,12 +82,33 @@ Home
                 <a class="btn btn-success mt-4" href="{{game.torrent}}">Tải Torrent</a>
                 <a class="btn btn-success mt-4" href="{{game.mega}}">Tải Mega</a>
             </div>
+
         </div>
     </div>
     {% endfor %}
+    <div>
+        <a href="" class="btn btn-success" style="width: 100px; margin: 0 auto;">Xem thêm</a>
+    </div>
+    
 </div>
 
-
+<div class="container-fluid text-center">
+    <h1>Thể loại game</h1>
+    <div class="row mt-3">
+        <div class="col-md-3 ">
+            <a href="" class="btn btn-success">Chiến thuật</a>
+        </div>
+        <div class="col-md-3">
+            <a href="" class="btn btn-success">Hành động</a>
+        </div>
+        <div class="col-md-3">
+            <a href="" class="btn btn-success">Point & Click</a>
+        </div>
+        <div class="col-md-3">
+            <a href="" class="btn btn-success">Phiêu lưu</a>
+        </div>
+    </div>
+</div>
 
 
 
