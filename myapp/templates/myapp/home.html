@@ -5,6 +5,31 @@ Home
 {%endblock%}
 {%block content%}
 
-    <h1>hello</h1>
+
+<div class="row">
+    {% for game in games %}
+    <div class="col-lg-4 mb-4">
+        <div class="card container-fluid h-100">
+            <img src="{{game.img}}" alt="" class="img-fluid img-top h-50">
+            <div class="card-body">
+                <h4 class="card-title">
+                    {{game.title}}
+                </h4>
+                <div class="card-text">
+                    {{game.content}}
+                </div>
+            </div>
+            <div class="text-center mt-auto mb-2">
+                <a class="btn btn-success mt-4" href="{{game.torrent}}">Tải Torrent</a>
+                <a class="btn btn-success mt-4" href="{{game.mega}}">Tải Mega</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
 
 {%endblock%}
